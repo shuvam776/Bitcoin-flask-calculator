@@ -1,1 +1,1 @@
-# Bitcoin-flask-calculator
+# Crypto-price-calculator
