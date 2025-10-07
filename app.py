@@ -13,7 +13,7 @@ def index():
     result = None
     coin = None
     if request.method == "POST":
-        coin = request.form['coin'].lower()
+        coin = request.form['coin'].lower().strip()
         API_URL = f"https://rest.coincap.io/v3/assets/{coin}?apiKey={API_KEY}"
         response = requests.get(API_URL)
         data = response.json()
