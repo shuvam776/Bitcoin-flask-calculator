@@ -16,9 +16,10 @@ def index():
         coin = request.form['coin'].lower()
         API_URL = f"https://rest.coincap.io/v3/assets/{coin}?apiKey={API_KEY}"
         response = requests.get(API_URL)
-        data = response.json()
-        cost = float(data['data']['priceUsd'])
-        if coin and cost:
+        
+        if response:
+            data = response.json()
+            cost = float(data['data']['priceUsd'])
             try:
                amount = float(request.form['number'])
                result = float(amount*cost)
@@ -26,9 +27,11 @@ def index():
             except ValueError:
                 result = "Enter valid amount"
         else:
-            result = "Invalid Coin Name"
+            result = "Enter valid Coin"
+            
+        
     else:
-        result = "Invalid Coin Name"
+        pass   
     return render_template('index.html',result=result)
 
 if __name__ == "__main__":
